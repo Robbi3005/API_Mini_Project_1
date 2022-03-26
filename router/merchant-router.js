@@ -13,8 +13,8 @@ const middleware = require('../middleware/auth');
 
 //---------------------------------------------------------------------------------------------------------------------
 
-router.get('/', Merchant.getMerchants);
-// router.get('/', middleware.validate, Merchant.getMerchants);
+// router.get('/', Merchant.getMerchants);
+router.get('/', middleware.validate, Merchant.getMerchants);
 
 router.get('/:id', Merchant.getMerchant);
 // router.get('/:id', middleware.validate, Merchant.getMerchant);
