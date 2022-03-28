@@ -1,8 +1,7 @@
 // const { errorForEach } = require('verror');
 const Merchant = require('../model/merchant-model');
-
 class MerchantControl {
-    
+
     static getMerchants(req, res) {
         // res.status(200).json(Merchant.getMerchants())
         Merchant.getMerchants((err, row) => {
@@ -27,31 +26,51 @@ class MerchantControl {
         })
     }
 
-    static addMerchant(req, res) {
-        Merchant.addMerchant(req.body, (err, row) => {
-            if (err) {
-                console.log(err)
-                res.status(404).json(error)
-            } else if (row) {
-                res.status(201).json(row)
-            }
-        })
+    // static addMerchant(req, res) {
+
+    //     const data = req.body;
+
+    //     if (!data.id) {
+    //         return res.status(400).json({ message: "id is required" })
+    //     }
+
+    //     // const existId = Merchant.findById(data.id);
+
+    //     // if (existId != "") {
+    //     //     return res.status(400).json({ message: "id already exist" })
+    //     // }
+
+    //     Merchant.addMerchant(data, (err, row) => {
+    //         if (err) {
+    //             console.log(err)
+    //             res.status(404).json(err)
+    //         } else if (row) {
+    //             res.status(201).json(row)
+    //         }
+    //     })
+    // }
+
+    static async addMerchant(req, res) {
+
+        const data = req.body;
+
+        if (!data.id) {
+            return res.status(400).json({ message: "id is required" })
+        }
+
+        // await Merchant.addMerchant(data)
+        // res.status(201).send(data)
+
+        const existId = Merchant.findById(data.id);
+
+        if (existId != "") {
+            res.status(400).json({ message: "id already exist" })
+            return
+        }
+
+        await Merchant.addMerchant(data)
+        res.status(201).send(data)
     }
-
-
-    // if (!req.body.id) {
-    //     res.status(400).json({ message: 'id required' })
-    // }
-
-    // const existingId = Merchant.findById(req.body.id)
-
-    // if (existingId) {
-    //     res.status(400).json({ message: 'id has already created' })
-    // }
-
-    // res.status(201).json(Merchant.addMerchant(req.body))
-    // res.send('Merchant added')
-
 
     static updateMerchant(req, res) {
         // res.status(201).json(Merchant.updateMerchant(req.body))
@@ -77,7 +96,7 @@ class MerchantControl {
         })
     }
 
-//------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------
 
     // static getProducts(res) {
     //     Product.getProducts((err, row) => {

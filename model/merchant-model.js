@@ -20,45 +20,66 @@ class Merchant {
         })
     }
 
-    static addMerchant(body, cb) {
+    // static addMerchant(body, cb) {
+    //     let sql = `INSERT INTO merchant_info 
+    //     (id, password, address, join_date, phone_number) 
+    //     VALUES(?,?,?,?,?)`;
+
+    //     // let data = req.body
+
+    //     const dataMerchant = [
+    //         body.id,
+    //         body.password,
+    //         body.address,
+    //         body.join_date,
+    //         body.phone_number
+    //     ];
+
+    //    return db.query(sql, dataMerchant, (err, row) => {
+    //         cb(err, row)
+    //     })
+    // }
+
+    // static findById(id) {
+    //     let sql = `SELECT * FROM merchant_info WHERE id = ${id}`;
+
+    //     db.query(sql, (err) => {
+    //         if (err) throw err;
+    //     })
+    // }
+
+    static addMerchant(data) {
         let sql = `INSERT INTO merchant_info 
         (id, password, address, join_date, phone_number) 
         VALUES(?,?,?,?,?)`;
 
-        // let data = req.body
-
         const dataMerchant = [
-            body.id,
-            body.password,
-            body.address,
-            body.join_date,
-            body.phone_number
+            data.id,
+            data.password,
+            data.address,
+            data.join_date,
+            data.phone_number
         ];
 
-        db.query(sql, dataMerchant, (err, row) => {
-            cb(err, row)
+        return new Promise((resolve, reject) => {
+            db.query(sql, dataMerchant, (err, result) => {
+                resolve(result)
+                // reject(err)
+            })
         })
-
-        // db.query(sql, dataMerchant, (err, result) => {
-
-        //     if (err) {
-        //         console.log(err)
-        //     }
-        //     console.log(result)
-        //     res.send(result).status(201)
-        // })
     }
 
-    // static findById(id) {
-    //     let sql = `SELECT * FROM merchant_info WHERE id = ?`;
+    static findById(id) {
+        let sql = `SELECT id FROM merchant_info WHERE id = ${id}`;
 
-    //     return sql.find(val => val.id === id)
+        return new Promise((resolve, reject) => {
+            db.query(sql, (err, result) => {                
+                resolve(result)
+                // reject(err)
+            })
+        })
+    }
 
-    //     db.query(sql, [id], (err, result) => {
-    //         if (err) throw err;
-    //         res.send(result)
-    //     })
-    // }
 
     static updateMerchant(req, cb) {
         let sql = `UPDATE merchant_info SET
