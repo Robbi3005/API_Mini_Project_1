@@ -64,7 +64,7 @@ class Merchant {
         return new Promise((resolve, reject) => {
             db.query(sql, dataMerchant, (err, result) => {
                 resolve(result)
-                // reject(err)
+                reject(err)
             })
         })
     }
@@ -75,7 +75,7 @@ class Merchant {
         return new Promise((resolve, reject) => {
             db.query(sql, (err, result) => {                
                 resolve(result)
-                // reject(err)
+                reject(err)
             })
         })
     }

@@ -27,29 +27,23 @@ class ProductControl {
         })
     }
 
-    static addProduct(req, res) {
-        Product.addProduct(req.body, (err, row) => {
-            if (err) {
-                console.log(err)
-                res.status(400).json({ message: 'Internal Server Error' })
-            } else if (row) {
-                res.status(201).json(row)
-            }
-        })
+    static async addProduct(req, res) {
+
+        const data = req.body;
+
+        if (!data.id) {
+            return res.status(400).json({ message: 'Product id is required' })
+        }
+
+        const existId = await Product.findId(data.id);
+
+        if (existId != "") {
+            return res.status(400).json({ message: "Product id already exists" })
+        }
+
+        await Product.addProduct(data);
+        res.status(201).json(data);
     }
-
-    // if (!req.body.id) {
-    //     res.status(400).json({ message: 'id required' })
-    // }
-
-    // const existingId = Merchant.findById(req.body.id)
-
-    // if (existingId) {
-    //     res.status(400).json({ message: 'id has already created' })
-    // }
-
-    // res.status(201).json(Merchant.addMerchant(req.body))
-    // res.send('Merchant added')
 
     static updateProduct(req, res) {
         // res.status(201).json(Merchant.updateMerchant(req.body))
@@ -70,7 +64,7 @@ class ProductControl {
             if (err) {
                 res.status(400).json({ message: 'Internal Server Error' })
             } else if (row) {
-                res.status(200).json(row)
+                res.status(200).json(row = `Product with id ${req.params.id} has been deleted`)
             }
         })
     }

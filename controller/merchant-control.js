@@ -58,15 +58,12 @@ class MerchantControl {
             return res.status(400).json({ message: "id is required" })
         }
 
-        // await Merchant.addMerchant(data)
-        // res.status(201).send(data)
+        const existId = await Merchant.findById(data.id);
 
-        const existId = Merchant.findById(data.id);
-
-        // if (existId != "") {
-        //     res.status(400).json({ message: "id already exist" })
-        //     return
-        // }
+        if (existId != "") {
+            res.status(400).json({ message: "id already exist" })
+            return
+        }
 
         await Merchant.addMerchant(data)
         res.status(201).send(data)
@@ -79,7 +76,7 @@ class MerchantControl {
             if (err) {
                 res.status(400).json({ message: 'Internal Server Error' })
             } else if (row) {
-                res.status(200).json(row)
+                res.status(200).json(row = (result))
             }
         })
     }
@@ -91,7 +88,7 @@ class MerchantControl {
             if (err) {
                 res.status(400).json({ message: 'Internal Server Error' })
             } else if (row) {
-                res.status(200).json(row)
+                res.status(200).json(row = `Merchant deleted at id ${req.params.id}`)
             }
         })
     }
