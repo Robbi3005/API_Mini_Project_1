@@ -63,10 +63,10 @@ class MerchantControl {
 
         const existId = Merchant.findById(data.id);
 
-        if (existId != "") {
-            res.status(400).json({ message: "id already exist" })
-            return
-        }
+        // if (existId != "") {
+        //     res.status(400).json({ message: "id already exist" })
+        //     return
+        // }
 
         await Merchant.addMerchant(data)
         res.status(201).send(data)
