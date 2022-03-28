@@ -52,7 +52,7 @@ class ProductControl {
             if (err) {
                 res.status(400).json({ message: 'Internal Server Error' })
             } else if (row) {
-                res.status(200).json(row)
+                res.status(200).json(row=req.body)
             }
         })
     }

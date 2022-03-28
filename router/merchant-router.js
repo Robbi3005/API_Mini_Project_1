@@ -13,20 +13,20 @@ const middleware = require('../middleware/auth');
 
 //---------------------------------------------------------------------------------------------------------------------
 
-// router.get('/', Merchant.getMerchants);
-router.get('/', middleware.validate, Merchant.getMerchants);
+router.get('/', Merchant.getMerchants);
+router.get('/jwt', middleware.validate, Merchant.getMerchants);
 
 router.get('/:id', Merchant.getMerchant);
-// router.get('/:id', middleware.validate, Merchant.getMerchant);
+router.get('/jwt/:id', middleware.validate, Merchant.getMerchant);
 
 router.post('/', Merchant.addMerchant);
-// router.get('/', middleware.validate, Merchant.addMerchant);
+router.post('/jwt', middleware.validate, Merchant.addMerchant);
 
 router.put('/:id', Merchant.updateMerchant);
-// router.get('/:id', middleware.validate, Merchant.updateMerchant);
+router.put('/jwt/:id', middleware.validate, Merchant.updateMerchant);
 
 router.delete('/:id', Merchant.deleteMerchant);
-// router.get('/:id', middleware.validate, Merchant.deleteMerchant);
+router.delete('/jwt/:id', middleware.validate, Merchant.deleteMerchant);
 
 //---------------------------------------------------------------------------------------------------------------------
 

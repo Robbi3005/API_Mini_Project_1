@@ -76,7 +76,7 @@ class MerchantControl {
             if (err) {
                 res.status(400).json({ message: 'Internal Server Error' })
             } else if (row) {
-                res.status(200).json(row = (result))
+                res.status(200).json(row = (req.body))
             }
         })
     }
