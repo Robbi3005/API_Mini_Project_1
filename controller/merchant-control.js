@@ -55,7 +55,7 @@ class MerchantControl {
         const data = req.body;
 
         if (!data.id) {
-            return res.status(400).json({ message: "id is required" })
+            return res.status(404).json({ message: "id is required" })
         }
 
         const existId = await Merchant.findById(data.id);

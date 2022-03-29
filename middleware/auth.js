@@ -11,7 +11,7 @@ class Auth {
         if (validate) {
             next()
         } else {
-            res.status(401)
+            res.status(401).json({ message: 'Unauthorized' })
         }
 
         // res.status(401).json({ message: 'unauthorized' })
