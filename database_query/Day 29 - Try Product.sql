@@ -10,6 +10,13 @@ CHANGE COLUMN `join_date` `join_date` DATETIME NOT NULL ;
 ALTER TABLE `merchant_info` 
 CHANGE COLUMN `phone_number` `phone_number` varchar(255) NOT NULL ;
 
+ALTER TABLE `merchant_services`.`product_info` 
+ADD COLUMN `merchant_id` INT NOT NULL AFTER `name`;
+ 
+# untuk drop foreign key
+ALTER TABLE `merchant_services`.`product_info` 
+DROP FOREIGN KEY `fk_merchant_id`;
+
 INSERT INTO `merchant_info` 
 (`id`, `password`, `address`, `join_date`, `phone_number`) 
 VALUES ('1', '12345', 'jl.jalan', '2022-10-20 10:11:00', '085777777777');
