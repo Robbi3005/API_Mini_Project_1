@@ -3,7 +3,18 @@ const db = require('../config/db');
 class Product {
 
     static getProducts(cb) {
-        const sql = `SELECT * FROM product_info`;
+        // const sql = `SELECT * FROM product_info`;
+
+        const sql = `select 
+        p.id as id,
+        m.name as merchant_name,
+        p.name as product_name,
+        p.quantity as quantity,
+        p.Price as price
+    from product_info as p
+    join 
+        merchant_info as m 
+    on m.id = p.merchant_id;`;
 
         db.query(sql, (err, row) => {
             cb(err, row)
@@ -11,7 +22,18 @@ class Product {
     }
 
     static getProduct(id, cb) {
-        let sql = `SELECT * FROM product_info WHERE id = ?`;
+        // let sql = `SELECT * FROM product_info WHERE id = ?`;
+        let sql = `select 
+        p.id as id,
+        m.name as merchant_name,
+        p.name as product_name,
+        p.quantity as quantity,
+        p.Price as price
+    from product_info as p
+    join 
+        merchant_info as m 
+    on m.id = p.merchant_id
+    where p.id = ?`;
 
         // let id = req.params.id
 
@@ -50,19 +72,19 @@ class Product {
             data.price
         ];
 
-        return new Promise ((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             db.query(sql, dataProduct, (err, result) => {
                 resolve(result);
                 reject(err);
             })
-    
+
         })
     }
 
     static findId(id) {
         let sql = `SELECT id FROM product_info WHERE id = ${id}`
 
-        return new Promise ((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             db.query(sql, (err, result) => {
                 resolve(result);
                 reject(err);

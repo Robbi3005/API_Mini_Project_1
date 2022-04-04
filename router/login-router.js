@@ -12,17 +12,21 @@ const middleware = require('../middleware/auth');
 
 //---------------------------------------------------------------------------------------------------------------------
 
-router.post('/login1', Login.login);
+router.post('/', Login.login);
 
-router.post('/login2', Login.login2);
-
-router.get('/login1', middleware.validate, (req, res) => {
+router.get('/', middleware.validate, (req, res) => {
     res.status(200).json({ message: 'welcome' })
 });
 
-router.get('/login2', middleware.validate2, (req, res) => {
-    res.status(200).json({ message: 'welcome' })
-});
+//---------------------------------------------------------------------------------------------------------------------
+
+// JWT 2
+
+// router.post('/2', Login.login2);
+
+// router.get('/2', middleware.validate2, (req, res) => {
+//     res.status(200).json({ message: 'welcome' })
+// });
 
 //---------------------------------------------------------------------------------------------------------------------
 

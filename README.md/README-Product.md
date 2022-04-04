@@ -7,6 +7,7 @@
     {
         "id": INT,
         "name": VARCHAR(255),
+        "merchant_id": INT,
         "quantity": INT,
         "price": INT
     },

@@ -20,7 +20,7 @@ router.get('/jwt/:id', middleware.validate, Product.getProduct);
 
 router.post('/', Product.addProduct);
 router.post('/jwt', middleware.validate, Product.addProduct);
-router.post('/jwt2', middleware.validate2, Product.addProduct);
+// router.post('/jwt2', middleware.validate2, Product.addProduct);
 
 router.put('/:id',Product.updateProduct);
 router.put('/jwt/:id', middleware.validate, Product.updateProduct);

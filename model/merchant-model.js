@@ -50,12 +50,13 @@ class Merchant {
 
     static addMerchant(data) {
         let sql = `INSERT INTO merchant_info 
-        (id, password, address, join_date, phone_number) 
-        VALUES(?,?,?,?,?)`;
+        (id, password, name, address, join_date, phone_number) 
+        VALUES(?,?,?,?,?,?)`;
 
         const dataMerchant = [
             data.id,
             data.password,
+            data.name,
             data.address,
             data.join_date,
             data.phone_number
@@ -80,10 +81,10 @@ class Merchant {
         })
     }
 
-
     static updateMerchant(req, cb) {
         let sql = `UPDATE merchant_info SET
         password = ?,
+        name = ?,
         address = ?,
         join_date = ?,
         phone_number = ?
@@ -93,6 +94,7 @@ class Merchant {
 
         const dataMerchant = [
             data.password,
+            data.name,
             data.address,
             data.join_date,
             data.phone_number,

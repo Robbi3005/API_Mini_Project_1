@@ -22,11 +22,9 @@ app.use('/product', productRouter);
 
 const merchantRouter = require('./router/merchant-router');
 app.use('/merchant', merchantRouter);
-// app.use('/login', merchantRouter);
 
 const router = require('./router/login-router');
 app.use('/login', router);
-
 
 //---------------------------------------------------------------------------------------------------------------------
 
