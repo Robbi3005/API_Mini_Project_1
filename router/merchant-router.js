@@ -15,6 +15,7 @@ const middleware = require('../middleware/auth');
 
 router.get('/', Merchant.getMerchants);
 router.get('/jwt', middleware.validate, Merchant.getMerchants);
+router.get('/jwt2', middleware.validate2, Merchant.getMerchants);
 
 router.get('/:id', Merchant.getMerchant);
 router.get('/jwt/:id', middleware.validate, Merchant.getMerchant);

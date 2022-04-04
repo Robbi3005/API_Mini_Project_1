@@ -12,10 +12,18 @@ const middleware = require('../middleware/auth');
 
 //---------------------------------------------------------------------------------------------------------------------
 
-router.post('/', Login.login);
+router.post('/login1', Login.login);
 
-router.get('/', middleware.validate, (req, res) => {
+router.post('/login2', Login.login2);
+
+router.get('/login1', middleware.validate, (req, res) => {
     res.status(200).json({ message: 'welcome' })
 });
+
+router.get('/login2', middleware.validate2, (req, res) => {
+    res.status(200).json({ message: 'welcome' })
+});
+
+//---------------------------------------------------------------------------------------------------------------------
 
 module.exports = router;

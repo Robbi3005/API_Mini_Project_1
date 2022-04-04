@@ -1,1 +1,0 @@
-SELECT * FROM try.merchant_info;

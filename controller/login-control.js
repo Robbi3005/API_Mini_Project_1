@@ -6,7 +6,7 @@ class Login {
 
         const data = req.body;
 
-        if (data.password === '123456') {
+        if (data.password === '123456' && data.id === 1) {
 
             const token = jwt.sign({ // ini ngebuat token
                 id: data.id // value yang diambil ketika jwt varified
@@ -16,6 +16,24 @@ class Login {
 
         } else {
             res.status(401).json({ message: 'wrong password/unauthorized' })
+        }
+
+    }
+
+    static login2(req, res) {
+
+        const data = req.body;
+
+        if (data.id === 2 && data.password === '111213') {
+
+            const token = jwt.sign({ // ini ngebuat token
+                id: data.id // value yang diambil ketika jwt varified
+            }, 'asascascafad343')
+
+            res.status(200).json({ token });
+
+        } else {
+            res.status(401).json({ message: 'unauthorized' })
         }
 
     }

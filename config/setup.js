@@ -30,8 +30,10 @@ class dataBase {
         let sql = `CREATE TABLE product_info(
         id INT NOT NULL PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
+        merchant_id INT NOT NULL,
         quantity INT(45) NOT NULL,
-        price INT(255) NOT NULL
+        price INT(255) NOT NULL,
+        FOREIGN KEY (merchant_id) REFERENCES merchant_info(id)
         )`
 
         db.query(sql, (err) => {

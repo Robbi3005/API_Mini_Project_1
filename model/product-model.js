@@ -39,12 +39,13 @@ class Product {
 
     static addProduct(data) {
         let sql = `INSERT INTO product_info
-        (id, name, quantity, price)
-        VALUES(?,?,?,?)`;
+        (id, name, merchant_id, quantity, price)
+        VALUES(?,?,?,?,?)`;
 
         const dataProduct = [
             data.id,
             data.name,
+            data.merchant_id,
             data.quantity,
             data.price
         ];
@@ -72,6 +73,7 @@ class Product {
     static updateProduct(req, cb) {
         let sql = `UPDATE product_info SET
         name = ?,
+        merchant_id = ?,
         quantity = ?,
         price = ?
         WHERE id = ?`;
@@ -80,6 +82,7 @@ class Product {
 
         const dataProduct = [
             data.name,
+            data.merchant_id,
             data.quantity,
             data.price,
             req.params.id
