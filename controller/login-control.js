@@ -9,7 +9,8 @@ class Login {
         if (data.password === '123456' && data.id === 1) {
 
             const token = jwt.sign({ // ini ngebuat token
-                id: data.id // value yang diambil ketika jwt varified
+                id: data.id, // value yang diambil ketika jwt varified
+                pass : data.password
             }, 'jkbjscco3432f')
 
             res.status(200).json({ token });
@@ -27,7 +28,8 @@ class Login {
         if (data.id === 2 && data.password === '111213') {
 
             const token = jwt.sign({ // ini ngebuat token
-                id: data.id // value yang diambil ketika jwt varified
+                id: data.id, // value yang diambil ketika jwt varified
+                pass : data.password
             }, 'asascascafad343')
 
             res.status(200).json({ token });
